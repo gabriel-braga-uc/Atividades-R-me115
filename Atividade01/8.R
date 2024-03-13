@@ -1,0 +1,1 @@
+sequencia <- (seq(12:73))
