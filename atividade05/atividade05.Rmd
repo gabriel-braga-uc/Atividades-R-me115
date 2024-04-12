@@ -1,0 +1,95 @@
+---
+title: "atividade05"
+author: "Gabriel Ozelo Braga"
+output: html_document
+date: "2024-04-09"
+---
+```{r, echo=FALSE, include=FALSE}
+ncolunas <- ncol(cars)
+nomescolunas <- colnames(cars)
+```
+## 1.
+O conjunto cars é imbutido no R e tem `r ncolunas` colunas. Elas sendo: `r nomescolunas`
+
+## 2.
+As primeiras 6 linhas do conjunto de dados cars são:
+```{r, echo=FALSE}
+  head(cars, n = 6)
+```
+
+## 3.
+```{r}
+  library(knitr)
+```
+
+## 4.
+Replicando agora o exercício 2 mas usando kable() no lugar de head():
+```{r, echo=FALSE}
+  kable(head(cars, n = 6), format = "simple", align = "l")
+```
+
+## 5.
+```{r, echo=FALSE}
+  kable(summary(cars), format = "simple", align = "l")
+```
+
+## 6.
+```{r, fig.cap = "Gráfico de disperção do conjunto de dados cars com 5 de altura e 10 de largura", fig.height=5, fig.width=10, echo=FALSE}
+plot(x = cars$speed, y = cars$dist)
+```
+
+## 7.
+```{r echo=FALSE}
+speed <- cars$speed
+dist <- cars$dist
+speed2 <- speed**2
+logdist <- log(dist)
+sqrtdist <- sqrt(dist)
+
+cars_crt <- data.frame(speed, speed2, dist, logdist, sqrtdist)
+kable(head(cars_crt, n = 6), format = "simple", align = "l")
+```
+
+## 8.
+Usar o sapply para aplicar uma operação matemática ou função própria para cade elemento númerico de uma lista. Como aplicar o fibonacci a todos os elementos de uma lista, linha a linha.
+
+### Exemplo Cars e Cars_fibonacci:
+```{r, echo=FALSE}
+fibonacci <- function(n){
+  fibo <- c(0, 1, 1)
+  if(n <= 1 && n >= 0){
+    return(n)
+  }else if(n == 2){
+    return(1)
+  }
+  to_n <- seq(3, n+1)
+  for(x in to_n){
+    fibo <- append(fibo, fibo[x-1] + fibo[x])
+  }
+  return(fibo[n+1])
+}
+speed <- cars$speed
+dist <- cars$dist
+speed_fib <- sapply(speed, fibonacci)
+dist_fib <- sapply(dist, fibonacci)
+cars_fib <- data.frame(speed_fib, dist_fib)
+kable(head(cars, n = 6), format = "simple", align = "l")
+kable(head(cars_fib, n = 6), format = "simple", align = "l")
+```
+
+## 9.
+Seguem os valores para média e desvio padrão de speed e de dist.
+```{r, echo=FALSE}
+media.speed = mean(cars$speed)
+sd.speed = sd(cars$speed)  
+media.dist = mean(cars$dist)
+sd.dist = sd(cars$dist)
+resumo <- data.frame(media.speed, sd.speed, media.dist, sd.dist)
+kable(resumo, format = "simple", align = "l")
+```
+
+## 10.
+Código escondido pelo parâmetro echo.
+
+
+
