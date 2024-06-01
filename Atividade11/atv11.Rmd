@@ -1,0 +1,13 @@
+---
+title: "Atividade 11"
+author: "Gabriel Ozélo Braga - RA:247345"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, echo=FALSE}
+plot(pressure)
+```
