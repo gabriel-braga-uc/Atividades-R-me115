@@ -60,6 +60,21 @@ hist
 ```
 ## b.
 ```{r, echo=FALSE}
-hist <- goulden.barley.uniformity %>% ggplot(aes(x = yield, y = after_stat(density))) + geom_histogram(color = 1, fill = 5, binwidth = 19.5) + labs(title = "Producao de cevada") + geom_density(stat = "density", alpha = 0.2)
-hist
+hist.barley <- goulden.barley.uniformity %>% ggplot(aes(x = yield, y = after_stat(density))) + geom_histogram(color = 1, fill = 5, binwidth = 19.5) + labs(title = "Producao de cevada") + geom_density(stat = "density", alpha = 0.2, fill = 4)
+hist.barley
+ggsave("plot.png", plot = hist.barley)
 ```
+
+# 5.
+## a.
+```{r, echo=FALSE}
+harris.wateruse
+filter <- (harris.wateruse$age == "A2")
+harris.wateruse %>% ggplot() + geom_point(aes(x = tree, y = water/day), color = 1) + facet_grid(tree ~ water/day, labeller = species)
+```
+
+## b.
+```{r, echo=FALSE}
+
+```
+
