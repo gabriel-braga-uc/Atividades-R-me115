@@ -6,8 +6,28 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+library(dplyr)
 ```
 
+# 1.
+### a.
 ```{r, echo=FALSE}
-plot(pressure)
+grafico <- cars %>% ggplot() + geom_point(aes(x = speed, y = dist, color = "red")) + labs(title = "Dados de 1920", x = "Velocidade", y = "Distancia")
+grafico
+```
+### b.
+```{r, echo=FALSE}
+grafico <- cars %>% ggplot() + geom_point(aes(x = speed, y = dist, color = speed)) + labs(title = "Dados de 1920", x = "Velocidade", y = "Distancia") + scale_color_gradient(low = "black", high = "red")
+grafico
+```
+### c.
+```{r, echo=FALSE}
+grafico <- cars %>% ggplot() + geom_point(aes(x = speed, y = dist, color = dist+speed)) + labs(title = "Dados de 1920", x = "Velocidade", y = "Distancia") + scale_color_gradient(low = "blue", high = "red")
+grafico
+```
+### d.
+```{r, echo=FALSE}
+grafico <- cars %>% ggplot() + geom_point(aes(x = speed, y = dist, color = dist+speed)) + labs(title = "Dados de 1920", x = "Velocidade", y = "Distancia") + scale_color_gradient(low = "blue", high = "red") + geom_smooth(aes(x = speed, y = dist), method = "lm", se = FALSE)
+grafico
 ```
