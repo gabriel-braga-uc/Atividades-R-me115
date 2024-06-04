@@ -1,0 +1,117 @@
+---
+title: "Atividade 9"
+author: "Gabriel Ozélo Braga"
+output: html_document
+---
+
+```{r setup, include=FALSE, echo=FALSE}
+library(stringr)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# 1
+
+```{r, echo=FALSE}
+extrai_meio <- function(s){
+  ifelse(str_length(s)%%2 != 0, return(str_sub(s, str_length(s)%/%2 + 1, str_length(s)%/%2 + 1)), return(str_sub(s, str_length(s)%/%2, str_length(s)%/%2 + 1)))
+}
+```
+
+Teste com ```s1 <- "teste"``` e ```s2 <- "testes"```:
+
+```{r, echo=FALSE}
+s1 <- "teste"
+s2 <- "testes"
+```
+
+```{r}
+extrai_meio(s1)
+extrai_meio(s2)
+```
+
+# 2
+
+```{r, echo=FALSE}
+produtos <- c("TV ", " laptop", "carregador portátil","teclado Wireless", " Fones de ouvido ")
+produtos <- str_to_title(produtos)
+produtos <- str_trim(produtos)
+produtos
+produtos <- str_c(produtos, collapse = " ")
+produtos
+```
+
+# 3
+
+```{r, echo=FALSE}
+field_names <- c("order_number", "order_date", "customer_email", "product_title", "amount")
+field_names <- str_remove(field_names, "_")
+n <- str_length(field_names[1])
+for(x in field_names){
+  if(str_length(x) > n){
+    n <- str_length(x)
+  }
+}
+field_names <- str_pad(field_names, width = n)
+field_names
+```
+
+# 4
+
+```{r, echo=FALSE}
+junta_nomes <- function(s){
+  if(length(s) == 0){
+    return("")
+  }
+  s <- str_to_title(s)
+  if(length(s) == 1){
+    return(s[1])
+  }
+  if(length(s) == 2){
+    return(paste(s[1], s[2], sep = " e "))
+  }
+  return(paste(str_c(s[1: length(s)-1], collapse = ", "), " e ", s[length(s)], ".", sep = ""))
+}
+s1 <- c("Jose", "maria", "Sara", "CAIO")
+s2 <- c("Jose", "maria", "Sara")
+s3 <- c("Jose", "maria")
+s4 <- c("Jose")
+s5 <- c()
+junta_nomes(s1)
+junta_nomes(s2)
+junta_nomes(s3)
+junta_nomes(s4)
+junta_nomes(s5)
+
+```
+
+# 5
+
+```{r, echo=FALSE}
+addresses <- c("14 Pine Street, Los Angeles", "152 Redwood Street, Seattle", "8 Washington Boulevard, New York")
+addresses <- str_to_lower(addresses)
+addresses
+numero <- as.numeric(sapply(strsplit(addresses, " "), "[[", 1))
+for(x in numero){
+  addresses <- str_remove_all(addresses, as.character(x))
+}
+addresses <- str_trim(addresses)
+cidade <- c()
+endereco <- c()
+for(x in addresses){
+  temp <- str_split(x, ", ")
+  cidade <- append(cidade, temp[1])
+  endereco <- append(endereco, temp[2])
+}
+numero
+endereco
+length(cidade)
+cidade[11][1]
+```
+
+
+
+
+
+
+
+
