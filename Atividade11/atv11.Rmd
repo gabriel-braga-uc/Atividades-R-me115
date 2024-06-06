@@ -15,7 +15,7 @@ library(agridat)
 # 1.
 ### a.
 ```{r, echo=FALSE}
-grafico <- cars %>% ggplot() + geom_point(aes(x = speed, y = dist, color = "red")) + labs(title = "Dados de 1920", x = "Velocidade", y = "Distancia")
+grafico <- cars %>% ggplot() + geom_3point(aes(x = speed, y = dist, color = "red")) + labs(title = "Dados de 1920", x = "Velocidade", y = "Distancia")
 grafico
 ```
 
